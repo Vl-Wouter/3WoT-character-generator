@@ -18,6 +18,7 @@ const randomBtn = document.querySelector('#randomBtn')
 const loginBtn = document.querySelector('#loginBtn')
 const overlay = document.querySelector('.overlay')
 const loopWebBtn = document.querySelector('#loopWebBtn')
+const loopPiBtn = document.querySelector("#loopPiBtn")
 const db = firebase.firestore()
 let isLooping = false
 
@@ -65,6 +66,7 @@ randomBtn.addEventListener('click', generateRandom)
 loopWebBtn.addEventListener('click', () => {
     !isLooping ? loopAvatars() : ""
 })
+loopPiBtn.addEventListener('click', loopOnPi)
 firebase.auth().onAuthStateChanged((user) => {
     if(user) {
         overlay.classList.add('-hidden')
@@ -169,19 +171,6 @@ function displayAvatarOnGrid(item) {
     generateGrid(editorContainer, 'editor', item)
 }
 
-// function showAvatarInLoop(avatar, t) {
-//     setTimeout(function() {
-//         editorContainer.innerHTML = ''
-//         console.log("looping: " + t)
-//         const avatarArray = JSON.parse(avatar.data().array)
-//         generateGrid(editorContainer, 'editor', avatarArray)
-//     }, t * 3000)
-// }
-
-function displayLoop(list) {
-    
-}
-
 function loopAvatars() {
     isLooping = true
     db.collection('avatars').get()
@@ -203,5 +192,26 @@ function loopAvatars() {
             }
         }, 1000)
         
+    })
+}
+
+// Send signal to pi
+function startPiLoop() {
+    db.collection('piConnection').doc('loopAvatars').set({
+        isLooping: true
+    })
+}
+
+// Check Pi Signal
+function loopOnPi() {
+    // Check if status is already true
+    db.collection('piConnection').doc('loopAvatars').get()
+    .then(doc => {
+        if (doc.exists) {
+            const docData = doc.data()
+            if(docData.isLooping === false) startPiLoop()
+        } else {
+            console.log('no doc here')
+        }
     })
 }
