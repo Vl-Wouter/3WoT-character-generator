@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TEST</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <!-- Overlay to log user in -->
+    <section class="overlay">
+        <div class="overlay__form">
+            <h2>Character Generator</h2>
+            <form class="form">
+                <div class="form__group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" autofocus>
+                </div>
+                <div class="form__group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                </div>
+                <button id="loginBtn" class="btn -primary">Log in</button>
+            </form>
+        </div>
+    </section>
+    <header class="topBar">
+        <p class="topBar__title">Character Generator</p>
+        <section class="topBar__actions">
+            <button class="btn -primary" id="saveBtn">Save</button>
+            <button class="btn -outline-primary" id="randomBtn">Generate Random</button>
+        </section>
+    </header>
+    <main class="container">
+        <section class="editor">
+            <main id="editorContainer">
+
+            </main>
+        </section>
+        <section class="list">
+            <h3>All Characters</h3>
+            <main class="subContainer" id="characterContainer">
+            </main>
+            <section class="list__actions">
+                <button class="btn -primary -small" id="loopWebBtn">Loop on Web</button>
+                <button class="btn -primary -small">Loop on Pi</button>
+            </section>
+        </section>
+    </main>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

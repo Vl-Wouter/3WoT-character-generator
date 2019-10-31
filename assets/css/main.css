@@ -1,0 +1,233 @@
+/* .row {
+    display: flex;
+}
+
+.block {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #555;
+    background-color: #000000;
+}
+
+.-on {
+    background-color: #fefefe;
+} */
+
+/* Font */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+/* Colour Variables */
+:root {
+    --primary: #52A4B3;
+    --primary-light: #DDE8E9;
+    --primary-dark: #28536B;
+    --white: #ffffff;
+    --background: #F7F7F7;
+    --text: #1b111d;
+    --font: 'Montserrat', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100vw;
+    color: var(--text);
+    font-family: var(--font);
+}
+
+.overlay {
+    position: absolute;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    background: var(--primary-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay__form {
+    background: var(--background);
+    box-shadow: 0 5px 10px #00000005, 0 15px 40px #00000020;
+    padding: 8px 16px 24px 16px;
+}
+
+.-hidden {
+    display: none;
+}
+
+.form__group {
+    border: 1px solid var(--primary-light);
+    padding: 4px 8px;
+    margin: 8px 0;
+    background: var(--white);
+    display: flex;
+    flex-flow: column nowrap;
+    border-radius: 4px;
+}
+
+.form__group label {
+    font-size: 12px;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.form__group input {
+    border: none;
+    background: none;
+    font-family: var(--font);
+}
+
+.container {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+}
+
+.topBar {
+    background-color: var(--background);
+    width: 100%;
+    height: 60px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .10);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 32px;
+    box-sizing: border-box;
+    align-items: center;
+}
+
+.topBar__title {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+.btn {
+    padding: 16px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font);
+    font-weight: 700;
+}
+
+.btn.-primary {
+    background-color: var(--primary);
+    color: var(--white);
+    transition: background-color 100ms ease-in-out;
+}
+
+.btn.-primary:hover {
+    background-color: rgb(107, 181, 194);
+    transition: background-color 100ms ease-in-out;
+}
+
+.btn.-outline-primary {
+    background: none;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    transition: all 100ms ease-in-out;
+}
+
+.btn.-outline-primary:hover {
+    background: rgb(107, 181, 194);
+    color: var(--white);
+    border-color: rgb(107, 181, 194);
+    transition: all 100ms ease-in-out;
+}
+
+.btn.-small {
+    padding: 8px 12px;
+}
+
+.editor {
+    background-color: var(--primary-light);
+    height: 100%;
+    flex: 0 0 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#editorContainer {
+    border: 6px solid #ffffff;
+    box-shadow: 0 5px 10px #00000005, 0 10px 40px #00000020;
+}
+
+.row {
+    display: flex;
+}
+
+.editor__block {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #555;
+    background-color: #000000; 
+}
+
+.subContainer {
+    width: 100%;
+    max-height: 80%;
+    padding-bottom: 24px;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    overflow: auto;
+}
+
+.list__item {
+    padding: 16px 8px 24px 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .10);
+    flex: 0 0 auto;
+    height: auto;
+    max-height: 100px;
+    cursor: pointer;
+    margin: 8px 0;
+}
+
+.list__block {
+    width: 12px;
+    height: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #555;
+    background-color: #000000; 
+}
+
+.-on {
+    background-color: #fff;
+}
+
+
+
+.list {
+    /* background-color: yellow; */
+    height: 100%;
+    flex: 0 0 20%;
+    padding: 8px 8px 8px 16px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.list__actions {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, .10);
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+}
