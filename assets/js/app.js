@@ -69,7 +69,6 @@ function loginUser() {
 firebase.auth().onAuthStateChanged((user) => {
   if(user) {
       overlay.classList.add('-hidden')
-      initApp()
   } else {
       overlay.classList.remove('-hidden')
   }
