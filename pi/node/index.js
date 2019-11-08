@@ -66,7 +66,7 @@ const displayLoop = (avatars) => {
   let index = 0
   let loop = setInterval(() => {
     // Log looping character
-    console.log(`Looping character ${index + 1}`)
+    process.stdout.write(`Looping character: ${index+1}\r`)
     // call display on avatar
     displayAvatar(avatars[index])
     // check if loop is done
