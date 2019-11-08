@@ -14,14 +14,25 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 })
 const db = admin.firestore()
+
+// Fallback reset on app launch
 sense.clear()
 
+// Create document reference
 const doc = db.collection('piConnection').doc('loopAvatars')
 
+
+/**
+ * Return a value between 0 and max
+ * @param {Number} max Maximum value
+ */
 const randomValue = (max) => {
   return Math.floor(Math.random() * Math.floor(max))
 }
 
+/**
+ * Reset the database loop trigger
+ */
 const resetTrigger = () => {
   db.collection('piConnection').doc('loopAvatars').set({
     isLooping: false
@@ -31,6 +42,10 @@ const resetTrigger = () => {
   })
 }
 
+/**
+ * Display an avatar on the sense hat
+ * @param {Array} avatar Set of binary values of pixel states
+ */
 const displayAvatar = (avatar) => {
   const red = randomValue(255)
   const green = randomValue(255)
@@ -43,6 +58,10 @@ const displayAvatar = (avatar) => {
   })
 }
 
+/**
+ * Loop through all available avatars
+ * @param {Array} avatars Array of avatars
+ */
 const displayLoop = (avatars) => {
   let index = 0
   let loop = setInterval(() => {
@@ -66,6 +85,9 @@ const displayLoop = (avatars) => {
   }, 1000)
 }
 
+/**
+ * Get all avatars and start loop
+ */
 const loopAvatars = () => {
   consola.info('Looping avatars on Pi')
   db.collection('avatars').get()
@@ -82,6 +104,9 @@ const loopAvatars = () => {
   })
 }
 
+/**
+ * Listener for database trigger
+ */
 const observer = doc.onSnapshot(snapshot => {
   consola.info('Received a new snapshot from database')
   const snapshotData = snapshot.data()
@@ -89,7 +114,9 @@ const observer = doc.onSnapshot(snapshot => {
   isLooping ? loopAvatars() : consola.info('No need to loop avatars')
 }, err => consola.fatal(`Encountered an error: ${err}`))
 
-
+/**
+ * Exit process on CTRL+C
+ */
 process.on('SIGINT', () => {
   sense.clear()
   consola.info(`\n Interrupt detected, quitting application`)
