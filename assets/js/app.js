@@ -54,33 +54,44 @@ function loginUser() {
 
         return firebase.auth().signInWithEmailAndPassword(email, password)
     })
+    .then(user => {
+      if(user) {
+        initApp()
+      } else {
+        console.error('no user here!')
+      }
+    })
     .catch((error) => {
         console.error(error)
     })
 }
 
-// Initialize app
-initEditor()
-saveBtn.addEventListener('click', saveAvatar)
-randomBtn.addEventListener('click', generateRandom)
-loopWebBtn.addEventListener('click', () => {
-    !isLooping ? loopAvatars() : ""
-})
-loopPiBtn.addEventListener('click', loopOnPi)
 firebase.auth().onAuthStateChanged((user) => {
-    if(user) {
-        overlay.classList.add('-hidden')
-    } else {
-        overlay.classList.remove('-hidden')
-    }
+  if(user) {
+      overlay.classList.add('-hidden')
+  } else {
+      overlay.classList.remove('-hidden')
+  }
 })
+
 loginBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-    loginUser()
+  e.preventDefault()
+  loginUser()
 })
-db.collection("avatars").onSnapshot((doc) => {
-    generateList(doc)
-})
+
+function initApp() {
+  // Initialize app
+  initEditor()
+  saveBtn.addEventListener('click', saveAvatar)
+  randomBtn.addEventListener('click', generateRandom)
+  loopWebBtn.addEventListener('click', () => {
+      !isLooping ? loopAvatars() : ""
+  })
+  loopPiBtn.addEventListener('click', loopOnPi)
+  db.collection("avatars").onSnapshot((doc) => {
+      generateList(doc)
+  })
+}
 
 // Save avatar to db
 function saveAvatar() {
