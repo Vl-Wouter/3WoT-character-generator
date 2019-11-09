@@ -4,13 +4,19 @@
   "description": "Raspberry Pi app for character generator",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
   },
   "author": "Vl-Wouter",
   "license": "MIT",
   "dependencies": {
     "consola": "^2.10.1",
     "firebase-admin": "^8.7.0",
+    "nodemon": "^1.19.4",
     "sense-hat-led": "^1.0.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.7.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3"
   }
 }
