@@ -108,10 +108,10 @@ const loopAvatars = () => {
  * Listener for database trigger
  */
 const observer = doc.onSnapshot(snapshot => {
-  consola.info('Received a new snapshot from database')
+  consola.start({ message: 'Received a new snapshot from the database', badge: true })
   const snapshotData = snapshot.data()
   const { isLooping } = snapshotData
-  isLooping ? loopAvatars() : consola.info('No need to loop avatars')
+  isLooping ? loopAvatars() : consola.ready({ message: 'No loop request. Waiting for new snapshot', badge: true})
 }, err => consola.fatal(`Encountered an error: ${err}`))
 
 /**
@@ -119,6 +119,6 @@ const observer = doc.onSnapshot(snapshot => {
  */
 process.on('SIGINT', () => {
   sense.clear()
-  consola.info(`\n Interrupt detected, quitting application`)
+  consola.error(`\n Interrupt detected, quitting application`)
   process.exit()
 })
