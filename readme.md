@@ -6,6 +6,13 @@ All saved avatars are pushed to a Firestore database and can be displayed in the
 
 **Note:** If you clone this repository you might have to change the firebase details and add a service account file to the `/pi` folder. The details included are only to run a demo on Github Pages.
 
+## Demo app credentials
+
+```
+email: test@test.be
+pass: testUser
+```
+
 ## Contributors
 
 Wouter Vlaeyen - [GitHub](https://github.com/Vl-Wouter) - [Website](https://www.wouterv.be)
